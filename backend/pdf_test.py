@@ -5,14 +5,16 @@ from PyPDF2 import PdfReader
 
 # Load environment variables from .env file
 load_dotenv()
+
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-def extract_pdf_text(pdf_path):
+def extract_pdf_text(pdf_path_or_file):
     """
     Extracts all text from a PDF and returns it as a string.
+    Accepts either a file path (str) or a file-like object.
     """
     try:
-        reader = PdfReader(pdf_path)
+        reader = PdfReader(pdf_path_or_file)
         text = ""
         for page in reader.pages:
             page_text = page.extract_text()
@@ -49,8 +51,11 @@ class PDFConversation:
     Multi-turn conversation using PDF content as context.
     Dynamically handles long PDFs by chunking.
     """
-    def __init__(self, pdf_path: str, system_prompt="You are a helpful study assistant."):
-        self.pdf_text = extract_pdf_text(pdf_path)
+    def __init__(self, pdf_path_or_file, system_prompt="You are a helpful study assistant."):
+        """
+        Initialize with either a file path (str) or a file-like object.
+        """
+        self.pdf_text = extract_pdf_text(pdf_path_or_file)
         self.system_prompt = system_prompt
 
         # Create a conversation with initial system message

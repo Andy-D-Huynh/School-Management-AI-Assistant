@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Study Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PDF Study Assistant</h1>
+            <p class="subtitle">Upload your lecture PDF and ask questions</p>
+        </header>
+
+        <!-- PDF Upload Section -->
+        <div id="upload-section" class="upload-section">
+            <div id="drop-zone" class="drop-zone">
+                <div class="drop-zone-content">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <h2>Drag & Drop Your PDF</h2>
+                    <p>or click to browse</p>
+                    <input type="file" id="file-input" accept=".pdf" hidden>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Section -->
+        <div id="loading-section" class="loading-section hidden">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <h2>We're doing our magic...</h2>
+                <p>Processing your PDF, please wait</p>
+            </div>
+        </div>
+
+        <!-- Chat Section -->
+        <div id="chat-section" class="chat-section hidden">
+            <div class="chat-container">
+                <div id="messages" class="messages"></div>
+                <div class="chat-input-container">
+                    <input 
+                        type="text" 
+                        id="question-input" 
+                        class="question-input" 
+                        placeholder="Ask a question about your PDF..."
+                        autocomplete="off"
+                    >
+                    <button id="send-button" class="send-button">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
